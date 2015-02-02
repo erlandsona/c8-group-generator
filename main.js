@@ -1,3 +1,6 @@
+/*global $: false, _: false*/
+
+
 (function(){
   'use strict';
   var $input,
@@ -5,7 +8,7 @@
     url   = 'https://yspuku7qvh9u4cr3.firebaseio.com/.json';
 
   $(function (){
-    $input = $('input'),
+    $input = $('input');
     $ul    = $('ul');
 
     $input.change(getUpdateAndSplit);
@@ -21,7 +24,7 @@
       var chunkedStudents = chunkData(res['c8-students'], count);
       $ul.append(createList(chunkedStudents));
     });
-  };
+  }
 
   function chunkData(data, count){
     return _(data)
@@ -36,11 +39,11 @@
   function createList(array) {
     var groupList = [];
     _.forEach(array, function(team){
-      var $ol = $('<ol></ol>')
+      var $ol = $('<ol></ol>');
 
       _.forEach(team, function(teamMember){
-        var $li =  $('<li>' + teamMember + '</li>')
-        $li.text(teamMember)
+        var $li =  $('<li>' + teamMember + '</li>');
+        $li.text(teamMember);
         $ol.append($li);
       });
 
