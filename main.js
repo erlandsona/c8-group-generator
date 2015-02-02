@@ -1,34 +1,34 @@
 /*global $: false, _: false*/
 
 
-(function(){
+(function () {
   'use strict';
   var $input,
     $ul,
     url   = 'https://yspuku7qvh9u4cr3.firebaseio.com/.json';
 
-  $(function (){
+  $(function () {
     $input = $('input');
     $ul    = $('ul');
 
     $input.change(getUpdateAndSplit);
-    getUpdateAndSplit();
+    getUpdateAndSplit ();
   });
 
 
-  function getUpdateAndSplit(){
+  function getUpdateAndSplit() {
     var count = $input.val();
 
     $ul.empty();
-    $.get(url, function(res){
+    $.get(url, function (res) {
       var chunkedStudents = chunkData(res['c8-students'], count);
       $ul.append(createList(chunkedStudents));
     });
   }
 
-  function chunkData(data, count){
+  function chunkData(data, count) {
     return _(data)
-      .map(function(value){
+      .map(function (value) {
         return value.firstName + ' ' + value.lastName[0] + '.';
       })
       .shuffle()
@@ -38,10 +38,10 @@
 
   function createList(array) {
     var groupList = [];
-    _.forEach(array, function(team){
+    _.forEach(array, function (team) {
       var $ol = $('<ol></ol>');
 
-      _.forEach(team, function(teamMember){
+      _.forEach(team, function (teamMember) {
         var $li =  $('<li>' + teamMember + '</li>');
         $li.text(teamMember);
         $ol.append($li);
