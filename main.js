@@ -1,9 +1,17 @@
-var $input = $('input'),
-    $ul    = $('ul'),
+var $input,
+    $ul,
     url   = 'https://yspuku7qvh9u4cr3.firebaseio.com/.json';
 
-$input.change(getUpdateAndSplit);
-document.addEventListener('DOMContentLoaded', getUpdateAndSplit);
+$(document).ready(init);
+
+function init(){
+  $input = $('input'),
+  $ul    = $('ul');
+
+  $input.change(getUpdateAndSplit);
+  getUpdateAndSplit();
+}
+
 
 function getUpdateAndSplit(){
   var count = $input.val();
